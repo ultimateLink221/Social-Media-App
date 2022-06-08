@@ -22,10 +22,15 @@ function RegisterForm(props) {
       ) 
     });
 
-    const data = await response.json();
+    // const data = await response.json();
 
-    if(data.status === 'ok') {
-      navigate('/login');
+    if(registerData) {
+      setTimeout(() => {
+        navigate('/login');
+      }, 100);
+    }
+    else {
+      alert('Something went wrong.');
     }
   }
 
