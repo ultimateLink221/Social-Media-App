@@ -51,7 +51,7 @@ function NavBar({ user }) {
             </React.Fragment>)}
           </div>
           <div>
-            <label for="check" className='checkbtn' onClick={handleNav}>
+            <label htmlFor="check" className='checkbtn' onClick={handleNav}>
               <i className="fa-solid fa-bars"></i>
             </label>
           </div>

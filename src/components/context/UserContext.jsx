@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const storedData = window.localStorage.getItem('USERNAME');
-    console.log(storedData);
     if (storedData !== null) setUsername(JSON.parse(storedData));
 
   }, []);
