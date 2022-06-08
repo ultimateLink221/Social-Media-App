@@ -43,7 +43,7 @@ function LoginForm(props) {
             <label className='input-label' htmlFor='username'><h2>Username</h2></label>
             <input 
               className='input'
-              autocomplete="off"
+              autoComplete="off"
               {...register('username', {required: true})}
             />
             {errors.username && <p className='error' >Username is required.</p>}
@@ -53,7 +53,7 @@ function LoginForm(props) {
             <input 
               className='input'
               type="password"
-              autocomplete="off"
+              autoComplete="off"
               {...register('password', {required: true})}
             />
             {errors.password && <p className='error' >Password is required.</p>} 
