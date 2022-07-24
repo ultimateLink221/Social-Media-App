@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-function Logout(props) {
+function Logout() {
 
   useEffect(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('USERNAME');
-    window.location = '/';
+    window.location.href = '/';
   }, []);
 
   return (

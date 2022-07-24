@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import Pagination from './utils/Pagination';
 
-function Cards({ isUser }) {
+function Cards({ isUser }: { isUser: string }) {
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -23,7 +23,7 @@ function Cards({ isUser }) {
     }
   }
 
-  const deleteData = async (id) => {
+  const deleteData = async (id: string) => {
     try {
       await fetch(`https://social-media-app-001.herokuapp.com/api/socialMediaPosts/${id}`, {
         method: 'DELETE',
@@ -41,7 +41,7 @@ function Cards({ isUser }) {
     fetchData();
   }, []);
   
-  const handleDelete = (id) => {
+  const handleDelete = (id: string) => {
     deleteData(id);
     setTimeout(() => {
       fetchData();
@@ -52,7 +52,7 @@ function Cards({ isUser }) {
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = data.slice(indexOfFirstCard, indexOfLastCard);
 
-  const handlePagination = (pageNumber) => {
+  const handlePagination = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   }
 
@@ -64,8 +64,9 @@ function Cards({ isUser }) {
 
   return (
     <div>
-      {currentCards.map((item, index) => {
-        return <Card key={index} {...item} onDelete={handleDelete} isUser={isUser} />
+      {currentCards.map((item: any, index) => {
+        console.log(item)
+        return <Card key={index} {...(typeof item === 'object' ? item : {})} onDelete={handleDelete} isUser={isUser} />
       })}
       <Pagination cardsPerPage={cardsPerPage} totalCards={data.length} paginate={handlePagination} />
     </div>

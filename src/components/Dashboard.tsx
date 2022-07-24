@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
-function Dashboard(props) {
+function Dashboard() {
  const navigate = useNavigate();
 
  useEffect(() => {
@@ -13,7 +13,7 @@ function Dashboard(props) {
        localStorage.removeItem('token')
        navigate('/login');
       }
-      window.location = '/';
+      window.location.href = '/';
    }
  }, []);
 

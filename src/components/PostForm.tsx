@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useUser from './hooks/useUser';
 
 
-function PostForm(props) {
+function PostForm() {
   const navigate = useNavigate();
   
   const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ function PostForm(props) {
   async function getUser() {
     const response = await fetch('https://social-media-app-001.herokuapp.com/api/users');
 
-    const data = await response.json()
+    const data: any[] = await response.json()
 
     const filteredData = data.filter(item => item.username === username);
 
@@ -67,7 +67,7 @@ function PostForm(props) {
   }, [postFullContent]);
   
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: {makePost: string}) => {
     const user = username;
     const image = userImage;
 
@@ -81,8 +81,12 @@ function PostForm(props) {
       navigate('/');
     }, 100);
   }
+
+  interface FormValues {
+    makePost: string
+  }
   
-  const {register, handleSubmit, formState: { errors }} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm<FormValues>();
   
   return (
     <div className='card-holder'>

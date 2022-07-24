@@ -1,6 +1,16 @@
 import React from 'react';
 
-function Card({ user, content, image, onDelete, _id, isUser }) {
+interface CardProps {
+  key: number
+  user: string;
+  content: string;
+  image: string;
+  onDelete: any;
+  _id: string;
+  isUser: string;
+}
+
+function Card({ user, content, image, onDelete, _id, isUser }: CardProps) {
 
   return (
     <div className='card-holder'>

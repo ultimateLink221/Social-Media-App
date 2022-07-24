@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Pictures from '../tempBackEnd/pictureData';
 import useUser from './hooks/useUser';
 
-function Profile(props) {
+function Profile() {
   const navigate = useNavigate();
   
   const [pictures] = useState(Pictures);
@@ -16,7 +16,7 @@ function Profile(props) {
 
   const { username } = useUser();
 
-  async function updateProfileImage(image) {
+  async function updateProfileImage(image: {profileImage: string }) {
     try {
       await fetch(`https://social-media-app-001.herokuapp.com/api/users/${userId}`, 
         {
@@ -35,7 +35,7 @@ function Profile(props) {
   async function getUser() {
     const response = await fetch('https://social-media-app-001.herokuapp.com/api/users');
 
-    const data = await response.json()
+    const data: any[] = await response.json()
 
     const filteredData = data.filter(item => item.username === username);
 

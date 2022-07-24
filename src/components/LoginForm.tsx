@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useUser from './hooks/useUser';
 
-function LoginForm(props) {
+function LoginForm() {
   const navigate = useNavigate();
   
   const { setUsername } = useUser();
 
-  async function loginUser(userData) {
+  async function loginUser(userData: { username: string, password: string}) {
     const response = await fetch('https://social-media-app-001.herokuapp.com/api/auth', {
       method: 'POST',
       headers: {
@@ -27,12 +27,18 @@ function LoginForm(props) {
       alert('Please Check Your Username or Password.');
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { username: string, password: string}) => {
+    console.log(data)
     setUsername(data.username);
     loginUser(data);
   }
+
+  interface FormValues {
+    username: string;
+    password: string;
+  }
   
-  const {register, handleSubmit, formState: { errors }} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm<FormValues>();
   
   return (
     <div className='card-holder'>

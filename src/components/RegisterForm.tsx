@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-function RegisterForm(props) {
+function RegisterForm() {
   const navigate = useNavigate();
   
   const [registerData, setRegisterData] = useState({
@@ -34,7 +34,7 @@ function RegisterForm(props) {
     }
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { username: string, password: string }) => {
     console.log(data);
 
     setRegisterData({
@@ -45,8 +45,13 @@ function RegisterForm(props) {
 
     registerUser();
   }
+
+  interface FormValues {
+    username: string;
+    password: string;
+  }
   
-  const {register, handleSubmit, formState: { errors }} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm<FormValues>();
   
   return (
     <div className='card-holder'>

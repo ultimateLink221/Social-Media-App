@@ -1,7 +1,13 @@
 import React from 'react';
 
-function Pagination({ cardsPerPage, totalCards, paginate }) {
-  const pageNumbers = [];
+interface PaginationProps {
+  cardsPerPage: number;
+  totalCards: number;
+  paginate: any;
+}
+
+function Pagination({ cardsPerPage, totalCards, paginate }: PaginationProps) {
+  const pageNumbers: number[] = [];
 
   for(let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
     pageNumbers.push(i);

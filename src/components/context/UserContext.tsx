@@ -1,11 +1,18 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 
-const UserContext = createContext(null);
+interface IUser {
+  username: string;
+  setUsername: any;
+  userImage: string;
+  setUserImage: any;
+}
 
-export const UserProvider = ({ children }) => {
-  const [username, setUsername] = useState('');
-  const [userImage, setUserImage] = useState('');
+const UserContext = createContext<Partial<IUser>>({});
+
+export const UserProvider = ({ children }: any) => {
+  const [username, setUsername] = useState<string>('');
+  const [userImage, setUserImage] = useState<string>('');
 
   useEffect(() => {
     const storedData = window.localStorage.getItem('USERNAME');

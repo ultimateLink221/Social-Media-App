@@ -18,8 +18,8 @@ function App() {
 
   useEffect(() => {
     try {
-      const jwt = localStorage.getItem('token');
-      const user = jwtDecode(jwt);
+      const jwt: string | null = localStorage.getItem('token');
+      const user: string = jwt !== null ? jwtDecode(jwt) : '' ;
       setUser(user);
     } catch (ex) {
       console.log(ex);
